@@ -7,8 +7,14 @@ function Search(props) {
 
     return (
         <div className="search-container">
-            <SearchQuery />
-            <FilterQuery />
+            <SearchQuery 
+              handleSearchSubmit={props.handleSearchSubmit}
+              handleSearchChange={props.handleSearchChange}
+            />
+            <FilterQuery 
+              handleBookType={props.handleBookType}
+              handlePrintType={props.handlePrintType}
+            />
         </div>
     )
 }

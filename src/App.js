@@ -8,15 +8,14 @@ class App extends Component {
     books: [],
     error: null,
     loading: false,
-    searchTerms: {
-      query: 'the chronicles of narnia',
-      printType: 'books',
-      bookType: 'partial'
-    }
+    query: '',
+    printType: null,
+    bookType: null,
   }
 
-  componentDidMount() {
-    const searchTerms = `q=${this.state.searchTerms.query}+printType=${this.state.searchTerms.printType}+filter=${this.state.searchTerms.bookType}`;
+  handleSearchSubmit = (event) => { 
+    event.preventDefault();
+    const searchTerms = `q=${event.target.search.value}+printType=${this.state.printType}+filter=${this.state.bookType}`;
     const url = `https://www.googleapis.com/books/v1/volumes?key=AIzaSyBAhLu0otRKl_zijvuS7IMkZOgEOfBLbZ0&${searchTerms}`;
     fetch(url)
       .then(res => {
@@ -28,7 +27,7 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          book: data,
+          books: data.items,
           error: null
         });
       })
@@ -39,14 +38,40 @@ class App extends Component {
       });
     }
   
-  
+  handleSearchChange = (event) => {
+    this.setState({
+      query: event.target.value
+    })
+  }
+
+  handlePrintType = (value) => {
+    this.setState({
+      printType: value
+    });
+  }
+
+  handleBookType = (value) => {
+    this.setState({
+      bookType: value
+    });
+  }
+
+
+  handleBookType
 
   render() {
     return (
       <main className='App'>
         <Header />
-        <Search />
-        <Booklist />
+        <Search 
+          handleSearchSubmit={this.handleSearchSubmit}
+          handleSearchChange={this.handleSearchChange}
+          handleBookType={this.handleBookType}
+          handlePrintType={this.handlePrintType}
+        />
+        <Booklist 
+          books={this.state.books}
+        />
       </main>
     );
   }

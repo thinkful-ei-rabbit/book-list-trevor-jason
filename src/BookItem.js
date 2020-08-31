@@ -1,15 +1,15 @@
 import React from 'react';
 
-function BookItem (props) {
+function BookItem ({ title, author, price, description, image }) {
   return (
     <div>
-      <h3>title</h3>
+      <h3>{title}</h3>
       <div>
-        <img />
+        <img src={image} alt={title}/>
         <div className="bookDetails">
-          <p>author</p>
-          <p>price</p>
-          <p>book description</p>
+          <p>{author}</p>
+          <p>{price}</p>
+          <p>{description}</p>
         </div>
       </div>
     </div>
