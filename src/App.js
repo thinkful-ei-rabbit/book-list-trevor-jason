@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Header from './Header';
+import Search from './Search';
 
-function App() {
-  return (
-    <main className='App'>
-      <p>Hello World</p>
-    </main>
-  );
+class App extends Component {
+  
+  render() {
+    return (
+      <main className='App'>
+        <Header />
+        <Search />
+      </main>
+    );
+  }
 }
 
 export default App;
