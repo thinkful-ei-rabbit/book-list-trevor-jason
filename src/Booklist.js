@@ -17,7 +17,6 @@ function Booklist (props) {
       <BookItem 
         title={book.volumeInfo.title}
         author={book.volumeInfo.authors[0]}
-        price={book.saleInfo.listPrice.amount}
         description={book.volumeInfo.description}
         image={book.volumeInfo.imageLinks.thumbnail}
       />
