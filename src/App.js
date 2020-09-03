@@ -9,13 +9,13 @@ class App extends Component {
     error: null,
     loading: false,
     query: '',
-    printType: null,
-    bookType: null,
+    printType: 'all',
+    bookType: 'ebooks',
   }
 
   handleSearchSubmit = (event) => { 
     event.preventDefault();
-    const searchTerms = `q=${event.target.search.value}`;
+    const searchTerms = `q=${this.state.query}&bookType=${this.state.bookType}&printType=${this.state.printType}`;
     const url = `https://www.googleapis.com/books/v1/volumes?key=AIzaSyBAhLu0otRKl_zijvuS7IMkZOgEOfBLbZ0&${searchTerms}`;
     fetch(url)
       .then(res => {
@@ -64,6 +64,7 @@ class App extends Component {
           handleSearchSubmit={this.handleSearchSubmit}
           handleBookType={this.handleBookType}
           handlePrintType={this.handlePrintType}
+          handleSearchChange={this.handleSearchChange}
         />
         <Booklist 
           books={this.state.books}

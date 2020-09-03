@@ -1,13 +1,66 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+.header-container {
+  background-color: #000;
+  margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  text-align: center;
+  color: #FFF;
+  margin: 0;
+  padding: 50px 0;
+}
+
+h3 {
+  text-align: center;
+  border-top: 3px #000;
+}
+
+.query-container, .filter-query {
+  text-align: center;
+  padding: 5px 0;
+}
+
+.query-container {
+  background-color: #8F8F8F;
+}
+
+.filter-query {
+    background-color: #AFAFAF;
+    display: flex;
+    justify-content: center;
+}
+
+.bookType-container {
+  padding-left: 20px;
+}
+
+.printType-container {
+  padding-right: 20px;
+}
+
+.bookDetails-item {
+  border-bottom: 1px solid #c4c4c4;
+  padding: 0 0 5px 0;
+}
+
+.bookDeatils-containter {
+  display: flex;
+}
+
+.bookDeatils-containter img {
+  flex: 1;
+  height: fit-content;
+  margin: auto 0;
+}
+
+.bookDetails {
+  flex: 4;
+  text-align: center;
+}
+
+.description {
+  padding: 0 5px;
 }
