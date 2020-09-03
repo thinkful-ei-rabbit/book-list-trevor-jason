@@ -1,14 +1,14 @@
 import React from 'react';
 
-function BookItem ({ title, author, description, image }) {
+function BookItem (props) {
   return (
-    <div>
-      <h3>{title}</h3>
+    <div key={props.book.id}>
+      <h3>{props.book.volumeInfo.title}</h3>
       <div>
-        <img src={image} alt={title}/>
+        <img src={props.book.volumeInfo.imageLinks.thumbnail} alt={props.book.volumeInfo.title}/>
         <div className="bookDetails">
-          <p>{author}</p>
-          <p>{description}</p>
+          <p>{props.book.volumeInfo.authors}</p>
+          <p>{props.book.volumeInfo.description}</p>
         </div>
       </div>
     </div>

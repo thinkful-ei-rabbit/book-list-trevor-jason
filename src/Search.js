@@ -9,7 +9,6 @@ function Search(props) {
         <div className="search-container">
             <SearchQuery 
               handleSearchSubmit={props.handleSearchSubmit}
-              handleSearchChange={props.handleSearchChange}
             />
             <FilterQuery 
               handleBookType={props.handleBookType}

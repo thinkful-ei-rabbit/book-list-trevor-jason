@@ -15,7 +15,7 @@ class App extends Component {
 
   handleSearchSubmit = (event) => { 
     event.preventDefault();
-    const searchTerms = `q=${event.target.search.value}+printType=${this.state.printType}+filter=${this.state.bookType}`;
+    const searchTerms = `q=${event.target.search.value}`;
     const url = `https://www.googleapis.com/books/v1/volumes?key=AIzaSyBAhLu0otRKl_zijvuS7IMkZOgEOfBLbZ0&${searchTerms}`;
     fetch(url)
       .then(res => {
@@ -56,16 +56,12 @@ class App extends Component {
     });
   }
 
-
-  handleBookType
-
   render() {
     return (
       <main className='App'>
         <Header />
         <Search 
           handleSearchSubmit={this.handleSearchSubmit}
-          handleSearchChange={this.handleSearchChange}
           handleBookType={this.handleBookType}
           handlePrintType={this.handlePrintType}
         />
