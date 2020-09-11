@@ -11,6 +11,7 @@ function FilterQuery(props) {
             </select>
             <label htmlFor="bookType">Book Type:</label>
             <select name="bookType" id="bookType" onChange={(event) => props.handleBookType(event.target.value)}>
+                <option value="all">All</option>
                 <option value="ebooks">ebooks</option>
                 <option value="free-ebooks">Free ebooks</option>
                 <option value="paid-ebooks">Paid ebooks</option>

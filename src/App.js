@@ -3,28 +3,53 @@ import Header from './Header';
 import Search from './Search';
 import Booklist from './Booklist';
 
+
 class App extends Component {
   state = {
     books: [],
     error: null,
-    loading: false,
     query: '',
-    printType: null,
-    bookType: null,
+    printType: 'all',
+    bookType: 'all'
   }
+
 
   handleSearchSubmit = (event) => { 
     event.preventDefault();
-    const searchTerms = `q=${event.target.search.value}+printType=${this.state.printType}+filter=${this.state.bookType}`;
-    const url = `https://www.googleapis.com/books/v1/volumes?key=AIzaSyBAhLu0otRKl_zijvuS7IMkZOgEOfBLbZ0&${searchTerms}`;
-    fetch(url)
+  
+    const key = 'AIzaSyBAhLu0otRKl_zijvuS7IMkZOgEOfBLbZ0';
+    let searchParams = ''
+    
+    if (this.state.bookType !== "all") {
+     searchParams = new URLSearchParams({
+      q: event.target.search.value,
+      printType: this.state.printType,
+      filter: this.state.bookType
+    })
+  }
+     else {
+    searchParams = new URLSearchParams({
+      q: event.target.search.value,
+      printType: this.state.printType,
+    })
+  }
+  
+    const url = `https://www.googleapis.com/books/v1/volumes?${searchParams}`;
+
+    console.log(url)
+    
+
+    fetch(url,
+      {method:'GET',
+      headers: {'Authorization': key, 'Content-Type': 'application/json'}
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error('Something went wrong')
         }
         return res;
       })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         this.setState({
           books: data.items,
@@ -35,14 +60,9 @@ class App extends Component {
         this.setState({
           error: err.message
         });
-      });
+      })
     }
   
-  handleSearchChange = (event) => {
-    this.setState({
-      query: event.target.value
-    })
-  }
 
   handlePrintType = (value) => {
     this.setState({
@@ -56,16 +76,14 @@ class App extends Component {
     });
   }
 
-
-  handleBookType
-
   render() {
+ 
     return (
+      
       <main className='App'>
         <Header />
         <Search 
           handleSearchSubmit={this.handleSearchSubmit}
-          handleSearchChange={this.handleSearchChange}
           handleBookType={this.handleBookType}
           handlePrintType={this.handlePrintType}
         />
@@ -76,5 +94,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
